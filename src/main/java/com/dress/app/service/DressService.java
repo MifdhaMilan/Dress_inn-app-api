@@ -1,6 +1,5 @@
 package com.dress.app.service;
 
-import java.util.UUID;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,27 +11,35 @@ import com.dress.app.repository.DressRepo;
 
 @Service
 public class DressService {
-	private final DressRepo dressRepo;
-
 	@Autowired
-	public DressService(DressRepo dressRepo) {
-		 this.dressRepo = dressRepo;
-	}
+	private DressRepo dressRepo;
+
 	public Dress addDress(Dress dress) {
-		dress.setDressCode(UUID.randomUUID().toString());
 		return dressRepo.save(dress);
 	}
 	public List<Dress> findAllDresses(){
 		return dressRepo.findAll();
 	}
+	public List<Dress> findMenDresses(){
+		return dressRepo.findDressByType("M");
+	}
+	public List<Dress> findWomenDresses(){
+		return dressRepo.findDressByType("W");
+	}
 	public Dress findDressById(Long id) {
 		return dressRepo.findDressById(id).orElseThrow(() -> new DressNotFoundException("Dress by id "+id+" was not found"));
 	}
 	public Dress updateDress(Dress dress) {
-		return dressRepo.save(dress);
+		Dress existingDress = dressRepo.findById(dress.getId()).orElse(null);
+		existingDress.setPrice(dress.getPrice());
+	    existingDress.setName(dress.getName());
+		existingDress.setImageUrl(dress.getImageUrl());
+		dressRepo.save(existingDress);
+		return existingDress;
+		
 	}
 	public void deleteDress(Long id) {
-		dressRepo.deleteDressById(id);
+	dressRepo.deleteById(id);
 	}
 	
 	

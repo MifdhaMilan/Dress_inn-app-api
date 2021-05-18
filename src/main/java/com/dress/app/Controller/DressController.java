@@ -31,6 +31,17 @@ public class DressController {
 		List<Dress> dresses = dressService.findAllDresses();
 		return new ResponseEntity<>(dresses, HttpStatus.OK);
 	}
+	@GetMapping("/Men")
+	public ResponseEntity<List<Dress>> getMenDresses(){
+		List<Dress> dresses = dressService.findMenDresses();
+		return new ResponseEntity<>(dresses, HttpStatus.OK);
+	}
+	@GetMapping("/Women")
+	public ResponseEntity<List<Dress>> getWomenDresses(){
+		List<Dress> dresses = dressService.findWomenDresses();
+		return new ResponseEntity<>(dresses, HttpStatus.OK);
+	}
+	
 	
 	@GetMapping("/find/{id}")
 	public ResponseEntity<Dress> getDressById(@PathVariable("id") long id){

@@ -13,7 +13,6 @@ import javax.persistence.Table;
 @Table
 public class Dress implements Serializable {
 
-	
 	@Id
 	@GeneratedValue (strategy = GenerationType.AUTO)
 	@Column (nullable = false)
@@ -21,15 +20,17 @@ public class Dress implements Serializable {
 	private String name;
 	private float price;
 	private String imageUrl;
-	@Column (nullable = false)
-	private String dressCode;
+	private String type;
 
-	public Dress(String name, float price, String imageUrl, String dressCode) {
+	
+
+	public Dress(String name, float price, String imageUrl, String dressCode, String type) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.imageUrl = imageUrl;
-		this.dressCode = dressCode;
+		this.type = type;
+
 	}
 	public Dress() {
 		
@@ -59,17 +60,17 @@ public class Dress implements Serializable {
 	public void setImageUrl(String imageUrl) {
 		this.imageUrl = imageUrl;
 	}
-	public String getDressCode() {
-		return dressCode;
+
+	public String getType() {
+		return type;
 	}
-	public void setDressCode(String dressCode) {
-		this.dressCode = dressCode;
+	public void setType(String type) {
+		this.type = type;
 	}
 	
 	@Override
 	public String toString() {
-		return "Dress [id=" + id + ", name=" + name + ", price=" + price + ", imageUrl=" + imageUrl + ", dressCode="
-				+ dressCode + "]";
+		return "Dress [id=" + id + ", name=" + name + ", price=" + price + ", imageUrl=" + imageUrl + "]";
 	}
 
 }
