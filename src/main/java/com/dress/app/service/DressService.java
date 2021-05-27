@@ -54,7 +54,12 @@ public class DressService {
 	public List<Dress> findOrderedDresses() {
 		return dressRepo.findDressByStatus("Ordered");
 	}
-
+	public void acceptOrderDress(long id) {
+		Dress existingDress = dressRepo.findById(id).orElse(null);
+		existingDress.setStatus("Available");
+		dressRepo.save(existingDress);
+		
+	}
 	
 	
    

@@ -75,5 +75,10 @@ public class DressController {
 		List<Dress> dresses = dressService.findOrderedDresses();
 		return new ResponseEntity<>(dresses, HttpStatus.OK);
 	}
+	@PutMapping("/acceptorder")
+	public void acceptOrderDress(@RequestBody long id){
+	  dressService.acceptOrderDress(id);
+	
+	}
 
 }
