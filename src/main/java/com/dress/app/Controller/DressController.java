@@ -60,12 +60,20 @@ public class DressController {
 		Dress updateDress = dressService.updateDress(dress);
 		return new ResponseEntity<>(updateDress, HttpStatus.OK);
 	}
+	@PutMapping("/order")
+	public void orderDress(@RequestBody long[] id){
+	  dressService.orderDress(id);
 	
+	}
 	@DeleteMapping("/delete/{id}")
 	public ResponseEntity<?> deleteDress(@PathVariable("id") long id){
 		dressService.deleteDress(id);
 		return new ResponseEntity<>(HttpStatus.OK);
 	}
-	
+	@GetMapping("/OrderedDress")
+	public ResponseEntity<List<Dress>> getOrderedDresses(){
+		List<Dress> dresses = dressService.findOrderedDresses();
+		return new ResponseEntity<>(dresses, HttpStatus.OK);
+	}
 
 }

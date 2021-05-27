@@ -21,15 +21,15 @@ public class Dress implements Serializable {
 	private float price;
 	private String imageUrl;
 	private String type;
+	private String status;
 
-	
-
-	public Dress(String name, float price, String imageUrl, String dressCode, String type) {
+	public Dress(String name, float price, String imageUrl, String dressCode, String type, String status) {
 		super();
 		this.name = name;
 		this.price = price;
 		this.imageUrl = imageUrl;
 		this.type = type;
+		this.status = status;
 
 	}
 	public Dress() {
@@ -67,11 +67,18 @@ public class Dress implements Serializable {
 	public void setType(String type) {
 		this.type = type;
 	}
-	
-	@Override
-	public String toString() {
-		return "Dress [id=" + id + ", name=" + name + ", price=" + price + ", imageUrl=" + imageUrl + "]";
+
+	public String getStatus() {
+		return status;
 	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+//	@Override
+//	public String toString() {
+//		return "Dress [id=" + id + ", name=" + name + ", price=" + price + ", imageUrl=" + imageUrl + "]";
+//	}
 
 }
 

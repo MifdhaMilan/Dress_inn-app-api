@@ -12,6 +12,8 @@ public interface DressRepo extends JpaRepository<Dress, Long> {
 	 //query method
 //	void deleteDressById(Long id);
 	List<Dress> findDressByType(String type);
+	
+	List<Dress> findDressByStatus(String status);
 
 	Optional<Dress> findDressById(Long id);
 }

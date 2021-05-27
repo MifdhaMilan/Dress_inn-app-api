@@ -34,13 +34,27 @@ public class DressService {
 		existingDress.setPrice(dress.getPrice());
 	    existingDress.setName(dress.getName());
 		existingDress.setImageUrl(dress.getImageUrl());
+		existingDress.setStatus(dress.getStatus());
 		dressRepo.save(existingDress);
 		return existingDress;
 		
 	}
+
 	public void deleteDress(Long id) {
 	dressRepo.deleteById(id);
 	}
+	
+	public void orderDress(long[] id) {
+		for(int i=0; i< id.length ;i++) {
+		Dress existingDress = dressRepo.findById(id[i]).orElse(null);
+		existingDress.setStatus("Ordered");
+		dressRepo.save(existingDress);
+		}
+	}
+	public List<Dress> findOrderedDresses() {
+		return dressRepo.findDressByStatus("Ordered");
+	}
+
 	
 	
    
